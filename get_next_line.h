@@ -6,7 +6,7 @@
 /*   By: jvacossi <jvacossi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 17:55:31 by jvacossi          #+#    #+#             */
-/*   Updated: 2025/11/22 20:34:40 by jvacossi         ###   ########lyon.fr   */
+/*   Updated: 2025/11/23 18:25:05 by jvacossi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int		ft_strlcat(char *dst, char *src, int size);
 int		ft_strlcpy(char *dst, char *src, int size);
 char	*ft_substr(char *s, unsigned int start, int len);
 void	*ft_memmove(void *dest, void *src, int n);
+char	*ft_buffermove(char *stash, char *buffer, int indexe, int bytes_read);
+char	*ft_read_and_join(char *buffer, char *stash, int fd, int indexe);
 
 #endif

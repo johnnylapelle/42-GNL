@@ -79,7 +79,6 @@ char	*ft_read_to_stash(char *buffer, char *stash, int fd)
 		if (bytes < 0)
 			return (NULL);
 		else if (bytes == 0)
-		// need to join b4 returning stash
 			return (stash);
 		buffer[bytes] = '\0';
 		tmp = stash;

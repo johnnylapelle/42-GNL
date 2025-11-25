@@ -6,7 +6,7 @@
 /*   By: jvacossi <jvacossi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 17:55:31 by jvacossi          #+#    #+#             */
-/*   Updated: 2025/11/23 18:25:05 by jvacossi         ###   ########lyon.fr   */
+/*   Updated: 2025/11/25 18:38:36 by jvacossi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@
 #endif
 
 char 	*get_next_line(int fd);
-int		ft_isendl(char *stash);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(char *str);
 int		ft_strlcat(char *dst, char *src, int size);
 int		ft_strlcpy(char *dst, char *src, int size);
 char	*ft_substr(char *s, unsigned int start, int len);
 void	*ft_memmove(void *dest, void *src, int n);
-char	*ft_buffermove(char *stash, char *buffer, int indexe, int bytes_read);
-char	*ft_read_and_join(char *buffer, char *stash, int fd, int indexe);
+
+char	*ft_extract(char *stash);
+void	ft_clean(char *stash, char *buffer);
+int		ft_isendl(char *stash);
+char	*ft_read_to_stash(char *buffer, char *stash, int fd);
 
 #endif

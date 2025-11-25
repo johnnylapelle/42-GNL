@@ -43,7 +43,7 @@ char *get_next_line(int fd)
 char	*ft_read_and_join(char *buffer, char *stash, int fd, int indexe)
 {
 	int		bytes_read;
-	char	*res;
+	char	*tmp;
 
 	while (indexe < 0)
 	{
@@ -56,9 +56,9 @@ char	*ft_read_and_join(char *buffer, char *stash, int fd, int indexe)
 			return(NULL);
 		}
 		buffer[bytes_read] = '\0';
-		res = stash;
+		tmp = stash;
 		stash = ft_strjoin(stash, buffer);
-		free(res);
+		free(tmp);
 		if (!stash)
 			return (NULL);
 		indexe = ft_isendl(stash);

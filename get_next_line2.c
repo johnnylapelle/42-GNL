@@ -37,7 +37,7 @@ char	*get_next_line(int fd)
 	pos = ft_isendl(stash);
 	if (pos < 0)
 		stash = ft_read_to_stash(buffer, stash, fd);
-	ft_extract(stash);
+	ft_extract(stash); // need to assign res to this fn
 	ft_clean(stash, buffer);
 	return (res);
 }

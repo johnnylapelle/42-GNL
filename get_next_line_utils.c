@@ -6,7 +6,7 @@
 /*   By: jvacossi <jvacossi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 18:40:24 by jvacossi          #+#    #+#             */
-/*   Updated: 2025/11/25 18:04:45 by jvacossi         ###   ########lyon.fr   */
+/*   Updated: 2025/11/26 19:40:45 by jvacossi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_strlcpy(char *dst, char *src, int size)
 	return (ft_strlen(src));
 }
 
-char	*ft_substr(char *s, unsigned int start, int len)
+char	*ft_substr(char *s, int start, int len)
 {
 	char	*substr;
 	int	i;
@@ -107,3 +107,30 @@ char	*ft_substr(char *s, unsigned int start, int len)
 	return (substr);
 }
 
+void	*ft_memmove(void *dest, void *src, int n)
+{
+	int				i;
+	unsigned char	*d;
+	unsigned char	*s;
+
+	if (!dest && !src)
+		return (NULL);
+	i = 0;
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	if (dest < src)
+	{
+		while (i < n)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
+	else
+	{
+		i = n;
+		while (i-- > 0)
+			d[i] = s[i];
+	}
+	return (dest);
+}

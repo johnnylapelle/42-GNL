@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvacossi <jvacossi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:01:59 by jvacossi          #+#    #+#             */
-/*   Updated: 2025/11/27 14:57:04 by jvacossi         ###   ########lyon.fr   */
+/*   Updated: 2025/11/27 14:57:26 by jvacossi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[MAX_FD][BUFFER_SIZE + 1];
 	char		*stash;
 	int			pos;
 	char		*res;
@@ -22,11 +22,11 @@ char	*get_next_line(int fd)
 	if (BUFFER_SIZE < 0 || fd < 0)
 		return (NULL);
 	stash = NULL;
-	stash = ft_strjoin(stash, buffer);
+	stash = ft_strjoin(stash, buffer[fd]);
 	pos = ft_isendl(stash);
 	if (pos < 0)
 	{
-		stash = ft_read_to_stash(buffer, stash, fd);
+		stash = ft_read_to_stash(buffer[fd], stash, fd);
 		if (stash == NULL || *stash == '\0')
 		{
 			free(stash);
@@ -34,7 +34,7 @@ char	*get_next_line(int fd)
 		}
 	}
 	res = ft_extract(stash);
-	ft_move_and_clean(stash, buffer);
+	ft_move_and_clean(stash, buffer[fd]);
 	return (res);
 }
 
@@ -109,13 +109,22 @@ int	ft_isendl(char *str)
 // {
 // 	if (argc > 3)
 // 		return (-1);
-// 	int fd = open("test", O_RDONLY);
-// 	char *str;
-// 	str = get_next_line(fd);
-// 	printf("%s", str);
-// 	str = get_next_line(fd);
-// 	printf("%s", str);
+// 	int fd = open(argv[1], O_RDONLY);
+// 	int fd2 = open(argv[2], O_RDONLY);
+// 	char	*str;
+// 	char	*str2;
+// 	while ((str = get_next_line(fd))
+// != NULL && (str2 = get_next_line(fd2)) != NULL)
+// 	{
+// 		printf("--- FD 1 ---");
+// 		printf("%s", str);
+// 		free(str);
+// 		printf("--- FD 2 ---");
+// 		printf("%s", str2);
+// 		free(str2);
+// 	}
 // 	close(fd);
+// 	close(fd2);
 // 	// str = get_next_line(fd);
 // 	// printf("%s", str);
 // 	// free(str);

@@ -6,7 +6,7 @@
 /*   By: jvacossi <jvacossi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 17:55:31 by jvacossi          #+#    #+#             */
-/*   Updated: 2025/11/26 19:37:08 by jvacossi         ###   ########lyon.fr   */
+/*   Updated: 2025/11/27 08:28:04 by jvacossi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#	define BUFFER_SIZE 1024
-#endif
+#  define BUFFER_SIZE 1024
+# endif
 
-char 	*get_next_line(int fd);
+char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strlen(char *str);
 int		ft_strlcat(char *dst, char *src, int size);
-int		ft_strlcpy(char *dst, char *src, int size);
 char	*ft_substr(char *s, int start, int len);
 void	*ft_memmove(void *dest, void *src, int n);
 char	*ft_extract(char *stash);

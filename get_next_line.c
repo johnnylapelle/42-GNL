@@ -6,7 +6,7 @@
 /*   By: jvacossi <jvacossi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 18:01:59 by jvacossi          #+#    #+#             */
-/*   Updated: 2025/11/26 19:40:49 by jvacossi         ###   ########lyon.fr   */
+/*   Updated: 2025/11/27 09:28:11 by jvacossi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,13 @@ char	*ft_read_to_stash(char *buffer, char *stash, int fd)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes < 0)
+		{
+			free(stash);
 			return (NULL);
+		}
 		else if (bytes == 0)
 			return (stash);
-		buffer[bytes + 1] = '\0';
+		buffer[bytes] = '\0';
 		tmp = stash;
 		stash = ft_strjoin(stash, buffer);
 		free(tmp);
@@ -102,21 +105,32 @@ int	ft_isendl(char *str)
 	return (-1);
 }
 
-int	main(int argc, char *argv[])
-{
-	if (argc > 2)
-		return (-1);
-	int fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (-1);
-	char	*str;
-	while ((str = get_next_line(fd)) != NULL)
-	{
-		printf("%s", str);
-		free(str);
-	}
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	close(fd);
-}
+// int	main(int argc, char *argv[])
+// {
+// 	if (argc > 2)
+// 		return (-1);
+// 	int fd = open(argv[1], O_RDONLY);
+// 	// int fd = -1;
+// 	char	*str;
+// 	str = get_next_line(fd);
+// 	printf("%s", str);
+// 	free(str);
+// 	str = get_next_line(fd);
+// 	printf("%s", str);
+// 	free(str);
+// 	close(fd);
+// 	fd = open(argv[1], O_RDONLY);
+// 	printf("new\n");
+// 	while ((str = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("%s", str);
+// 		free(str);
+// 	}
+// 	str = get_next_line(fd);
+// 	printf("%s", str);
+// 	free(str);
+// 	close(fd);
+// 	// str = get_next_line(fd);
+// 	// printf("%s", str);
+// 	// free(str);
+// }

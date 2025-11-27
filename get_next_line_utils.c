@@ -6,7 +6,7 @@
 /*   By: jvacossi <jvacossi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 18:40:24 by jvacossi          #+#    #+#             */
-/*   Updated: 2025/11/26 19:40:45 by jvacossi         ###   ########lyon.fr   */
+/*   Updated: 2025/11/27 08:42:02 by jvacossi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,31 @@
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*strjoin;
-	int		s1len;
+	char	*res;
 	int		s2len;
+	int		size;
+	int		i;
 
 	if (!s1 && !s2)
 		return (NULL);
-	s1len = ft_strlen(s1);
 	s2len = ft_strlen(s2);
-	strjoin = malloc(s1len + s2len + 1);
-	if (strjoin == NULL)
+	res = malloc(ft_strlen(s1) + s2len + 1);
+	if (res == NULL)
 		return (NULL);
-	ft_strlcpy(strjoin, s1, s1len + 1);
-	ft_strlcat(strjoin, s2, s2len + s1len + 1);
-	return (strjoin);
+	size = ft_strlen(s1) + 1;
+	i = 0;
+	if (size > 0)
+	{
+		while (i < size - 1 && s1[i])
+		{
+			res[i] = s1[i];
+			i++;
+		}
+		if (i < size)
+			res[i] = '\0';
+	}
+	ft_strlcat(res, s2, s2len + ft_strlen(s1) + 1);
+	return (res);
 }
 
 int	ft_strlen(char *str)
@@ -63,29 +74,11 @@ int	ft_strlcat(char *dst, char *src, int size)
 	return (dst_len + ft_strlen(src));
 }
 
-int	ft_strlcpy(char *dst, char *src, int size)
-{
-	int	i;
-
-	i = 0;
-	if (size > 0)
-	{
-		while (i < size - 1 && src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		if (i < size)
-			dst[i] = '\0';
-	}
-	return (ft_strlen(src));
-}
-
 char	*ft_substr(char *s, int start, int len)
 {
 	char	*substr;
-	int	i;
-	int	s_len;
+	int		i;
+	int		s_len;
 
 	if (!s)
 		return (NULL);
